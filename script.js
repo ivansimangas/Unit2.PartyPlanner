@@ -21,13 +21,13 @@ let selectedParty = [];
 
 async function getParties() {
   try {
-    const response = await fetch(API);
-    if (!respopnse.ok) throw new Error("Failed to fetch parties!");
-    const result = await response.json();
-    parties = result.data;
-    render();
+    const response = await fetch(API); //fetch data from the API
+    if (!respopnse.ok) throw new Error("Failed to fetch parties!"); //if response is not OK, throw an error
+    const result = await response.json(); // convert the response to  JavaScript object
+    parties = result.data; // update the state with the fetched data
+    render(); // call render to update the UI with the new data
   } catch (error) {
-    console.error("Error fetching parties", error);
+    console.error("Error fetching parties", error); // log any erros that occur
   }
 }
 
@@ -37,13 +37,13 @@ async function getParties() {
 
 async function getPartyDetails(id) {
   try {
-    const response = await fetch(`${API}/${id}`);
-    if (!response.ok) throw new Error("Failed to fetch party details!");
-    const result = await response.json();
-    selectedParty = result.data;
+    const response = await fetch(`${API}/${id}`); // fetch details for  spcific party
+    if (!response.ok) throw new Error("Failed to fetch party details!"); // handle failed request
+    const result = await response.json(); // convert response to JavaScript object
+    selectedParty = result.data; //update the state with selected party details
     render();
   } catch (error) {
-    console.error("Error fetching parties", error);
+    console.error("Error fetching parties", error); // log any errors that occur
   }
 }
 
@@ -131,4 +131,4 @@ async function init() {
   render();
 }
 
-init();
+init(); //start the application
